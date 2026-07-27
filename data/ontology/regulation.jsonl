@@ -1,0 +1,67 @@
+{"type": "regulation_scope", "name": "建築基準法", "purpose": "建築物の安全性・衛生性・防火性確保", "related": ["建築基準法施行令", "建築基準法施行規則", "各告示"], "exam_weight": 35, "note": "法=原則。令=基準値。規則=手続き。告示=細則。", "exam_freq": 5}
+{"type": "regulation_scope", "name": "都市計画法", "purpose": "都市の整備・開発・保全", "related": ["用途地域", "開発許可", "建蔽率・容積率"], "exam_weight": 15, "note": "用途地域12種類（住居系6種・商業系3種・工業系3種）。", "exam_freq": 5}
+{"type": "regulation_scope", "name": "消防法", "purpose": "火災予防・防火・消火活動", "related": ["消防法施行令", "避難設備", "消火設備"], "exam_weight": 10, "note": "避難経路と消防設備が2級の中心。", "exam_freq": 4}
+{"type": "regulation_scope", "name": "建築物のエネルギー消費性能の向上に関する法律", "purpose": "省エネ基準適合義務付け", "related": ["外皮性能", "機器性能", "一次エネルギー消費量"], "exam_weight": 10, "note": "2級では簡易的な判定方法が主。", "exam_freq": 3}
+{"type": "zoning", "name": "第一種低層住居専用地域", "floor_area_ratio": 50, "building_coverage_ratio": 50, "height_limit": "10mまたは12m（自治体条例）", "use_restriction": "専用住居のみ", "note": "戸建て・低層集合住宅。最も厳しい住居系。", "exam_freq": 5}
+{"type": "zoning", "name": "第二種低層住居専用地域", "floor_area_ratio": 60, "building_coverage_ratio": 60, "height_limit": "10mまたは12m", "use_restriction": "専用住居+小規模店舗", "note": "第一種よりやや緩和。",
+"default", "exam_freq": 4}
+{"type": "zoning", "name": "第一種住居地域", "floor_area_ratio": 100, "building_coverage_ratio": 60, "height_limit": "条例で定める（なければ無制限）", "use_restriction": "住居中心、事務所・店舗・病床数30未満の病院可", "note": "中層住宅地。2級試験の標準的な敷地条件。", "exam_freq": 5}
+{"type": "zoning", "name": "第二種住居地域", "floor_area_ratio": 200, "building_coverage_ratio": 60, "height_limit": "条例で定める", "use_restriction": "住居兼商業・事務所・ホテル・病院可", "note": "繁華街の住宅。商業との混在。", "exam_freq": 4}
+{"type": "zoning", "name": "準工業地域", "floor_area_ratio": 200, "building_coverage_ratio": 60, "height_limit": "条例で定める", "use_restriction": "住宅・商業・工場（重restoreなし）", "note": "住宅と工場の中間。工場騒音規制あり。",
+"default", "exam_freq": 3}
+{"type": "zoning", "name": "工業専用地域", "floor_area_ratio": 200, "building_coverage_ratio": 60, "height_limit": "条例で定める", "use_restriction": "工場のみ。住宅不可。", "note": "製造業集中地。", "exam_freq": 2}
+{"type": "zoning", "name": "商業地域", "floor_area_ratio": 400, "building_coverage_ratio": 80, "height_limit": "条例で定める", "use_restriction": "商業・事務所・住居・ホテル・遊技場", "note": "繁華街。建蔽率80%で最大の土地活用。", "exam_freq": 4}
+{"type": "zoning", "name": "近隣商業地域", "floor_area_ratio": 300, "building_coverage_ratio": 80, "height_limit": "条例で定める", "use_restriction": "近隣住民向け商業・住居", "note": "住宅街の商店街。",
+"default", "exam_freq": 3}
+{"type": "site_planning", "name": "建蔽率_第一種住居", "formula": "建築面積 / 敷地面積 × 100", "ratio": 60, "note": "建築面積=水平投影面積。屋根出っ張り含む。", "exception": "条例で緩和される場合あり（角地等）。", "exam_freq": 5}
+{"type": "site_planning", "name": "容積率_第一種住居", "formula": "延べ面積 / 敷地面積 × 100", "ratio": 100, "note": "延べ面積=各階床面積の和。屋根裏・地下室は一部除外。", "exception": "前面道路幅員による制限あり。", "exam_freq": 5}
+{"type": "site_planning", "name": "前面道路幅員による容積率制限", "formula": "容積率 = 前面道路幅員(m) × 係数（第一種住居×4, 商業×6）", "example": "第一種住居で幅員6mの道路 → 6×4=240%。但し地域上限100%適用 → 100%", "note": "第一種住居（上限100）では実際には制限されない。第二種住居（上限200）で影響。", "exam_freq": 4}
+{"type": "site_planning", "name": "斜線制限", "formula": "北側斜線：1:1.25の勾配（高度1.25mに対して水平1m）", "example": "境界から2mの地点の高さ上限 = 2×1.25 = 2.5m", "purpose": "隣地への日影軽減", "note": "道路幅員10m未満で適用。30m以上の道路に接する場合は道路斜線（1:1.25）。", "exam_freq": 5}
+{"type": "site_planning", "name": "道路斜線制限", "formula": "道路境界から水平距離Lの高さ上限 = L × 1.25", "purpose": "道路への日影軽減・採光確保", "applies_when": "前面道路幅員10m未満かつ建物高さが道路幅員以上", "exam_freq": 4}
+{"type": "site_planning", "name": "角地の緩和", "condition": "2道路に接し、交角が特定角度以上", "relaxation": "建蔽率+10%。緩和後の建蔽率上限は80%まで。", "note": "角地は風通し・採光が良いため緩和。",
+"default", "exam_freq": 3}
+{"type": "site_planning", "name": "セットバック", "condition": "前面道路幅員が4m未満（2項道路）", "requirement": "道路境界線から水平距離2mのラインまで後退", "consequence": "セットバック部分は敷地面積に算入しない", "exam_freq": 4}
+{"type": "site_planning", "name": "露天空地率", " urban": "not applicable", "suburban": "1/4以上または条例", "purpose": "防火延焼防止", "note": "市街化区域内ではなく、市街化調整区域では適用される場合あり。",
+"default", "exam_freq": 1}
+{"type": "fire", "name": "耐火建築物", "requirement": ["主な構造部が耐火構造", "外壁が難燃材料または耐火構造"], "sq_limit": "無制限（地域による）", "height_limit": "用途地域による", "note": "耐火建築物は構造材が火災時に所定時間（通常1〜2時間）耐える。", "exam_freq": 5}
+{"type": "fire", "name": "準耐火建築物", "requirement": ["耐火構造に準ずる構造", "柱・梁・床が準耐火構造"], "sq_limit": "用途地域による", "note": "準耐火は耐火より少し緩い。延焼防止効果あり。", "exam_freq": 4}
+{"type": "fire", "name": "木造耐火", "requirement": ["木材断面が大きい", 「耐火被覆（石膏ボード等）を施す"], "sq_limit": "用途地域による", "note": "木造で耐火建築物に相当する防火性能を出す。", "exam_freq": 3}
+{"type": "fire", "name": "防火地域", "zone": "市街地の中心部", "requirement": "耐火建築物または簡易耐火建築物", "note": "建蔽率80%まで緩和される場合あり。",
+"default", "exam_freq": 3}
+{"type": "fire", "name": "準防火地域", "zone": "防火地域の周辺", "requirement": "準耐火建築物まで認める", "note": "木造も建てられる。",
+"default", "exam_freq": 2}
+{"type": "fire_equipment", "name": "消火栓設備", "requirement": "11階以上または延べ面積が一定以上", "type": "屋内・屋外消火栓", "water": "屋内消火栓：放水圧力0.17MPa以上、水量130L/min以上", "exam_freq": 3}
+{"type": "fire_equipment", "name": "スプリンクラー設備", "requirement": "高層ビル・地下街・特別避難階段等", "activation": "68〜79℃でガラス球破裂→放水", "note": "自動的に初期消火。", "exam_freq": 4}
+{"type": "fire_equipment", "name": "自動火災報知設備", "requirement": "居室延べ面積一定以上", "type": ["光電式", "イオン式", "熱式", "差動式分布型"], "exam_freq": 4}
+{"type": "evacuation", "name": "避難階段", "width": "1.2m以上（75人以上なら1.4m以上）", "requirement": ["直接外に出るか避難階に至る", "煙を遮断（防火区画）", "段高17cm以下、踏面26cm以上"], "exam_freq": 5}
+{"type": "evacuation", "name": "特別避難階段", "requirement": ["避難階段に加えた特別な構造", "21階以上に設置義務", "圧力差で煙侵入防止"], "exam_freq": 3}
+{"type": "evacuation", "name": "緩降機・避難器具", "requirement": "3階以上で地上への避難経路がない場合", "type": ["緩降機", "救助袋", "ゴンドラ式"], "exam_freq": 2}
+{"type": "evacuation", "name": "避難階", "definition": "避難階段が直接外に出る階", "requirement": "各階から2方向避難または合いた避難経路", "exam_freq": 4}
+{"type": "structure_regulation", "name": "高さ制限", "regulation": "航空法による制限 + 日照・景観条例", "example": "東京駅周辺：高層ビル群でも航空法で高さ制限あり。", "exam_freq": 2}
+{"type": "structure_regulation", "name": "地盤調査", "requirement": "建築面積500m²以上または高さ13m以上の建築物は調査必須", "method": ["標準貫入試験", "瑞典式サウンディング"], "note": "支持層深度や液状化の可能性を調査。", "exam_freq": 3}
+{"type": "structure_regulation", "name": "基礎の設計", "requirement": ["自動支持力で反力を支持", "許容支持力以下になるように", "地盤の不均一沈下を防止"], "exam_freq": 4}
+{"type": "structure_regulation", "name": "プレキャスト・コンクリート", "note": "工場製品と現場製品の混在。品質管理上工場の方が有利。", "exam_freq": 2}
+{"type": "structure_regulation", "name": "構造計算", "requirement": [「耐力壁配置（水平力分担）", "鉛直荷重の支持", 「変形（たわみ・面外変位）の制御"], "exam_freq": 5}
+{"type": "confirmation", "name": "建築確認", "purpose": "建築基準法への適合確認", "reviewer": "建築主事 or 指定確認検査機関", "timing": "建築着手前", "exam_freq": 5}
+{"type": "confirmation", "name": "検査済証", "purpose": "建築確認申請が受理された証明", "note": "建築確認申請後、検査済証が交付されて初めて施工可能。", "exam_freq": 4}
+{"type": "confirmation", "name": "中間検査", "purpose": "構造的重要箇所の確認", "items": ["基礎工事", "鉄筋工事", "コンクリート打設"], "exam_freq": 4}
+{"type": "confirmation", "name": "竣工検査", "purpose": "建築物の完成後の確認", "result": "検査済証の交付 or 使用禁止", "note": "竣工検査を受けないと使用できない。", "exam_freq": 3}
+{"type": "barrier_free", "name": "段差解消", "requirement": "通路・階段の段差を解消または手すり等を設置", "priority": "公共施設・病院・駅等", "exam_freq": 2}
+{"type": "barrier_free", "name": "スロープ", "requirement": "勾配1/12以下、横幅1.0m以上", "note": "1/12を超える場合は段数や休憩を設ける。", "exam_freq": 2}
+{"type": "exam_point", "subject": "regulation", "text": "用途地域12種類：住居系6種（低層〜高度住居）+ 商業系3種（近商・商業・準工）+ 工業系3種（工業・工業専用・無指定）。", "difficulty": 2, "topic": "用途地域", "exam_freq": 5}
+{"type": "exam_point", "subject": "regulation", "text": "建蔽率60%：敷地面積100m²なら建築面積は60m²まで。延べ面積とは別物。建築面積=水平投影面積=屋根出っ張り含む。", "difficulty": 2, "topic": "建蔽率", "exam_freq": 5}
+{"type": "exam_point", "subject": "regulation", "text": "容積率100%：敷地面積100m²なら延べ面積は100m²まで。各階床面積の和。屋根裏・地下室は各自治体条例で除外規定あり。",
+"difficulty": 2, "topic": "容積率", "exam_freq": 5}
+{"type": "exam_point", "subject": "regulation", "text": "斜線制限（1:1.25）：敷地北側境界から2mの地点では高さ2.5mまで。境界に近いほど低く。", "difficulty": 3, "topic": "斜線", "exam_freq": 5}
+{"type": "exam_point", "subject": "regulation", "text": "前面道路幅員4m未満（2項道路）は、道路境界から2mのラインまでセットバック。セットバック部分は敷地面積には算入しない。", "difficulty": 3, "topic": "セットバック", "exam_freq": 5}
+{"type": "exam_point", "subject": "regulation", "text": "角地は建蔽率+10%まで緩和。但し上限は80%まで。2道路が交わる角度が135度以上が条件。", "difficulty": 3, "topic": "角地", "exam_freq": 4}
+{"type": "exam_point", "subject": "regulation", "text": "耐火建築物：主構造部が耐火構造であり、外壁が防火構造。減税・建蔽率緩等の優遇。", "difficulty": 2, "topic": "防火", "exam_freq": 4}
+{"type": "exam_point", "subject": "regulation", "text": "避難階段の有効幅員：1.2m以上（居室延べ面積200m²以上で1.4m以上）。段高17cm以下、踏面26cm以上。", "difficulty": 3, "topic": "避難", "exam_freq": 5}
+{"type": "exam_point", "subject": "regulation", "text": "自動火災報知設備は居室延べ面積が一定以上で義務。施設用途による（病院・ホテル・高層等）。", "difficulty": 3, "topic": "消防設備", "exam_freq": 4}
+{"type": "exam_point", "subject": "regulation", "text": "建築確認を受けずに建築した場合：建築主事が建築の中止、変更、使用禁止を命令できる。違反で刑罚の可能性。", "difficulty": 2, "topic": "確認申請", "exam_freq": 4}
+{"type": "exam_point", "subject": "regulation", "text": "構造計算は建築基準法施行令第82条の耐力計算。地震力・風圧力・荷重の組み合わせで応力度を計算。",
+"difficulty": 4, "topic": "構造計算", "exam_freq": 4}
+{"type": "exam_point", "subject": "regulation", "text": "建築物の高さ制限は、航空法（空港近く）+ 景観条例（眺望確保）+ 斜線制限（日影）の多重制約。", "difficulty": 3, "topic": "高さ", "exam_freq": 3}
+{"type": "exam_point", "subject": "regulation", "text": "建設用地の土壌汚染：土壌汚染対策法により、特定有害物質が基準値を超える場合は措置命令・除去措置が義務付けられる。", "difficulty": 3, "topic": "土壌", "exam_freq": 2}
+{"type": "exam_point", "subject": "regulation", "text": "パーキングメーターや道路占用許可：都市計画法・道路法の関係があるが2級では俯瞰レベル。",
+"difficulty": 1, "topic": "都市計画", "exam_freq": 2}

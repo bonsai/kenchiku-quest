@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "kenchikuquest",
+  "version": "${version}",
+  "name": "Kenchiku Quest",
+  "description": "Minecraft Fabric mod for kenchiku-quest.",
+  "authors": [
+    "bons"
+  ],
+  "contact": {
+    "homepage": "https://github.com/bons/kenchiku-quest",
+    "sources": "https://github.com/bons/kenchiku-quest"
+  },
+  "license": "MIT",
+  "icon": "assets/kenchikuquest/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "kenchiku.KenchikuQuestMod"
+    ]
+  },
+  "mixins": [
+    "kenchikuquest.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric-api": "*",
+    "minecraft": ">=1.20.1",
+    "java": ">=17"
+  }
+}

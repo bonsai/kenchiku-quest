@@ -1,0 +1,72 @@
+{"type": "thermal_property", "name": "空気比熱", "value": 1.005, "unit": "kJ/(kg·K)", "note": "乾燥空気の比熱。湿り空気はやや大きい。", "exam_freq": 2}
+{"type": "thermal_property", "name": "空気密度", "value": 1.2, "unit": "kg/m³", "note": "20℃の乾燥空気。温度が下がると密度が増す。", "exam_freq": 2}
+{"type": "thermal_property", "name": "水の蒸発潜熱", "value": 2500, "unit": "kJ/kg", "note": "水が蒸発する際に奪う熱。冷房の1078kJ/kgと間違えやすい。", "exam_freq": 3}
+{"type": "thermal_property", "name": "水蒸気比熱", "value": 1.86, "unit": "kJ/(kg·K)", "note": "水蒸気（湿り成分）の比熱。", "exam_freq": 1}
+{"type": "thermal_insulation", "name": "全面張りグラスウール100mm", "conductivity_W_mK": 0.038, "d": 0.1, "R": 2.63, "U_W_m2K": 0.38, "note": "断熱材の代表例。伝導率λ=0.038、厚さ100mmでR=2.63。", "exam_freq": 5}
+{"type": "thermal_insulation", "name": "全面張りグラスウール50mm", "conductivity_W_mK": 0.038, "d": 0.05, "R": 1.32, "U_W_m2K": 0.76, "note": "50mmは単純に100mmの半分。U値は2倍。", "exam_freq": 4}
+{"type": "thermal_insulation", "name": "硬質ウレタンフォーム50mm", "conductivity_W_mK": 0.024, "d": 0.05, "R": 2.08, "U_W_m2K": 0.48, "note": "グラスウールより高性能。発泡率が高いほどλは小さい。", "exam_freq": 3}
+{"type": "thermal_insulation", "name": "セルローズファイバー100mm", "conductivity_W_mK": 0.04, "d": 0.1, "R": 2.5, "U_W_m2K": 0.4, "note": "再生紙から。充填施工が多い。", "exam_freq": 2}
+{"type": "thermal_insulation", "name": "押出ポリスチレン30mm", "conductivity_W_mK": 0.034, "d": 0.03, "R": 0.88, "U_W_m2K": 1.14, "note": "基礎周り・外張り断熱で使われる。", "exam_freq": 3}
+{"type": "construction_thermal", "name": "基礎外周", "note": "基礎外周は断熱材で囲む。基礎熱橋を防ぐ。", "measure": "基礎外周断熱材", "exam_freq": 4}
+{"type": "construction_thermal", "name": "熱橋", "note": "断熱層が途切れる部分で熱が逃げる。窓周り・基礎・柱貫通部。", "countermeasure": "断熱材の連続施工、サーマルブレイク", "exam_freq": 5}
+{"type": "construction_thermal", "name": "山形継手", "note": "鉄骨の山形継手が外壁内に出ると、鉄の熱伝導で熱橋になる。", "countermeasure": "断熱材での覆い、内側配置", "exam_freq": 3}
+{"type": "ventilation", "name": "第1種換気", "mechanism": "給気と排気の両方を機械で行う", "advantage": "熱交換ができる。高性能。", "disadvantage": "設備コストと保守。", "typical": "全熱交換器付換気システム", "exam_freq": 5}
+{"type": "ventilation", "name": "第2種換気", "mechanism": "排気のみ機械、給気は自然", "advantage": "給気口がシンプル。", "disadvantage": "冬の冷気流入。", "typical": "浴室換気扇", "exam_freq": 4}
+{"type": "ventilation", "name": "第3種換気", "mechanism": "給気のみ機械、排気は自然", "advantage": "特殊な用途。", "disadvantage": "汚染空気の滞留リスク。", "typical": "クリーンルーム", "exam_freq": 3}
+{"type": "ventilation", "name": "自然換気", "mechanism": "風圧と温度差（煙突効果）", "advantage": "設備なし。動力ゼロ。", "disadvantage": "制御が難しい。", "typical": "開口部、換気塔", "exam_freq": 3}
+{"type": "ventilation_calc", "name": "居室必要換気量", "formula": "Q = 20・Ac / 人数", "unit": "m³/h", "note": "Ac=居室床面積(m²)。1人あたり20m³/hが目安。", "exam_freq": 4}
+{"type": "ventilation_calc", "name": "排気風量", "formula": "Q = A・v・3600", "unit": "m³/h", "note": "A=ダクト断面積(m²), v=風速(m/s)", "exam_freq": 3}
+{"type": "ventilation_calc", "name": "空気居換回数_n", "formula": "n = Q / V", "unit": "回/h", "note": "Q=換気量(m³/h), V=室容積(m³)。居換回数>2回/hが目安。", "exam_freq": 4}
+{"type": "ventilation_spec", "name": "全熱交換器", "efficiency": 0.65, "note": "給排気間の顕熱と潜熱の回収率65%程度。給気を冷暖房せずに済む。", "exam_freq": 5}
+{"type": "ventilation_spec", "name": "顕熱交換器", "efficiency": 0.75, "note": "潜熱（水分）は交換しない。冬の結露に注意。", "exam_freq": 3}
+{"type": "daylight", "name": "天空率", "value": "3〜5%", "note": "外壁開口部の天空に対する割合。採光に影響。", "exam_freq": 3}
+{"type": "daylight", "name": "窓地比", "formula": "窓面積/床面積", "standard": "1/7以上が目安", "note": "居室の採光不足を防ぐ。", "exam_freq": 4}
+{"type": "daylight", "name": "採光係数", "value": "窓面積/床面積×天空率", "unit": "%", "note": "室内の照度と外照度の比。1%以上が快適。", "exam_freq": 3}
+{"type": "daylight", "name": "直接日射", "note": "夏は冷房負荷増。冬は暖房に有効。", "countermeasure": "庇・ルーバー・Low-Eガラス・ブラインド", "exam_freq": 4}
+{"type": "daylight", "name": "拡散反射", "note": "天窓からの光は天井で拡散反射し、室内を均一に照らす。", "advantage": "まぶしさが少ない。", "exam_freq": 3}
+{"type": "lighting", "name": "基準照度", "value_office": 750, "value_living": 150, "unit": "lx", "note": "オフィス750lx、リビング150lx、廊下100lx。", "exam_freq": 3}
+{"type": "lighting", "name": "LED光源效率", "value": "150〜200 lm/W", "note": "白熱電球の10倍。省エネの主役。", "exam_freq": 2}
+{"type": "lighting", "name": "演色評価数Ra", "value": "80以上が目安", "note": "Ra=100が太陽光。Ra低いと色がくすむ。", "exam_freq": 2}
+{"type": "acoustics", "name": "防音等級", "definition": "建物構造による遮音性能。単位はdB。
+"default", "grade_I": 30, "grade_II": 35, "grade_III": 40, "note": "等級が高いほど上下階の音が聞こえにくい。", "exam_freq": 3}
+{"type": "acoustics", "name": "遮音等級", "definition": "壁・床・窓の遮音性能", "value_single": -25, "value_double": -40, "unit": "dB", "note": "単一壁-25dB、二重壁-40dB。", "exam_freq": 3}
+{"type": "acoustics", "name": "NC曲線", "definition": "室内ノイズの評価基準", "value_library": "NC-30", "value_office": "NC-40", "note": "NC-30は静か。NC-60はかなりうるさい。", "exam_freq": 2}
+{"type": "acoustics", "name": "音響吸収係数", "value": "0〜1", "note": "1で完全吸収。0で完全反射。吸音材は0.8以上。", "example": "グラスウール:0.9、コンクリート:0.02", "exam_freq": 3}
+{"type": "water_supply", "name": "上水道", "pressure": "0.1〜0.3 MPa", "note": "都市ガスのような配管圧。水栓で減圧。", "exam_freq": 2}
+{"type": "water_supply", "name": "受水槽方式", "advantage": "直接圧に左右されない。停電時も一定量の水がある。", "disadvantage": "清掃・メンテが必要。 Legionella対策。", "exam_freq": 3}
+{"type": "water_supply", "name": "直接結合方式", "advantage": "設備がシンプル。コスト低。", "disadvantage": "上水道圧に依存。", "exam_freq": 2}
+{"type": "drainage", "name": "合流式", "advantage": "管本数が少ない。コスト低。", "disadvantage": "大雨で汚水が溢れる。水質汚染。", "exam_freq": 3}
+{"type": "drainage", "name": "分流式", "advantage": "雨水と汚水を分離。水質管理容易。", "disadvantage": "管が2倍。コスト高。", "exam_freq": 3}
+{"type": "drainage", "name": "雑排水", "definition": "キッチン・浴室の排水。尿を含まない。", "note": "雑排水と便器排水は分けるか合流するか。", "exam_freq": 2}
+{"type": "hvac", "name": "冷房負荷", "formula": "Qc = Qs + Ql", "note": "顕熱Qs（温度）+潜熱Ql（湿気）。", "unit": "W", "exam_freq": 4}
+{"type": "hvac", "name": "顕熱比率SHF", "formula": "SHF = Qs / (Qs + Ql)", "value": "0.6〜0.9", "note": "SHF低い（0.6）=湿気多い。SHF高い（0.9）=乾燥気味。", "exam_freq": 3}
+{"type": "hvac", "name": "COP", "formula": "COP = 得られた熱 / 投入した仕事", "value": "3〜5（家庭用エアコン）", "note": "COP=3なら1kWの電力で3kWの冷熱。省エネ指標。", "exam_freq": 4}
+{"type": "hvac", "name": "EER", "definition": "冷房運転時のエネルギー消費効率", "value": "3.0以上が目標", "note": "EER=COPとほぼ同じ。", "exam_freq": 3}
+{"type": "hvac", "name": "APF", "definition": "年間パフォーマンス係数", "note": "1年間の冷暖房を通じた省エネ指標。", "exam_freq": 2}
+{"type": "comfort", "name": "快適温度帯", "winter": "20〜22℃", "summer": "25〜28℃", "note": "日本人の快適温度。個人差大。", "exam_freq": 3}
+{"type": "comfort", "name": "PMV", "definition": "予測平均不満度", "range_comfortable": "-0.5〜+0.5", "note": "PMV=0が最適。-3（寒い）〜+3（暑い）。", "exam_freq": 4}
+{"type": "comfort", "name": "PPD", "definition": "予測不満率", "formula": "PPD = 100 - 95·exp(-0.03353·PMV⁴ - 0.2179·PMV²)", "value_comfortable": "<10%", "note": "10%未満を目標。"
+"default", "exam_freq": 3}
+{"type": "comfort", "name": "相対湿度", "winter_comfort": "40〜50%", "summer_comfort": "50〜60%", "note": "30%以下は乾燥。70%以上はカビ。", "exam_freq": 3}
+{"type": "energy", "name": "一次エネルギー消費量", "unit": "MJ/m²年", "note": "建築物エネルギー消費の総合指標。地域区分あり。", "exam_freq": 2}
+{"type": "energy", "name": "外皮平均熱貫流率UA", "unit": "W/(m²・K)", "value_Z": 0.46, "value_H": 0.50, "note": "Z地≒0.46、H地≒0.50以下が省エネ基準。", "exam_freq": 4}
+{"type": "energy", "name": "年平均C値", "unit": "cm²/m²", "value": "2.0以下", "note": "気密性能。隙間面積/外皮面積。小さいほど気密が高い。", "exam_freq": 4}
+{"type": "energy", "name": "日射取得係数η", "unit": "%", "note": "窓から入る日射熱の取得率。夏は少なく、冬は多く。", "exam_freq": 3}
+{"type": "energy", "name": "太陽熱温水器", "efficiency": "400〜600W/m²（晴天時）", "note": "1枚1.5m²で約600W。年間効率は50〜60%。", "exam_freq": 2}
+{"type": "energy", "name": "太陽光発電", "output_per_panel": "200〜300W/枚", "area_per_panel": "1.6m²/枚", "note": "住宅用ハーフカットPERCは230W/1.6m²程度。", "exam_freq": 2}
+{"type": "energy", "name": "蓄電池", "capacity_ev": "40kWh", "capacity_home": "5〜10kWh", "note": "EV車の車載蓄電池は40〜60kWh。家庭用は5〜10kWh。", "exam_freq": 2}
+{"type": "exam_point", "subject": "environment", "text": "建築物省エネ基準で外皮平均熱貫流率UAはZ地で0.46、H地で0.50W/(m²・K)以下。", "difficulty": 3, "topic": "省エネ基準", "exam_freq": 5}
+{"type": "exam_point", "subject": "environment", "text": "C値（気密）は2.0cm²/m²以下。換気しやすい隙間も熱を逃がす。", "difficulty": 3, "topic": "気密", "exam_freq": 5}
+{"type": "exam_point", "subject": "environment", "text": "第1種換気（全熱交換器）は第2種（排気のみ）に比べ熱回収が効く。給気の温湿度がほぼ室内と同じになる。", "difficulty": 3, "topic": "換気", "exam_freq": 5}
+{"type": "exam_point", "subject": "environment", "text": "熱橋は断熱層の途切れた部分。鉄骨、基礎、窓枠周りで発生。結露・カビの原因。", "difficulty": 3, "topic": "断熱", "exam_freq": 5}
+{"type": "exam_point", "subject": "environment", "text": "Low-E複層ガラスのU値は1.0〜1.5W/(m²・K)。単板ガラスは5.8。複層化で大幅に熱損失を減らせる。", "difficulty": 2, "topic": "窓", "exam_freq": 4}
+{"type": "exam_point", "subject": "environment", "text": "直接日射による冷房負荷は、窓面積の50〜60%に相当。西日は特に厳しい。", "difficulty": 3, "topic": "日射", "exam_freq": 4}
+{"type": "exam_point", "subject": "environment", "text": "防音等級IIIは生活音が気にならないレベル（-40dB）。集合住宅の基準。", "difficulty": 2, "topic": "防音", "exam_freq": 3}
+{"type": "exam_point", "subject": "environment", "text": "ピアノ音や足音は低周波。低周波の遮音は品質（剛性）が重要。重量では不十分。", "difficulty": 4, "topic": "防音", "exam_freq": 3}
+{"type": "exam_point", "subject": "environment", "text": "室内照度の基準：オフィス750lx、教室500lx、リビング150lx。過剰照明は省エネでない。", "difficulty": 2, "topic": "照明", "exam_freq": 3}
+{"type": "exam_point", "subject": "environment", "text": "窓地比（窓面積/床面積）は1/7以上が目安。採光不足で電灯頼みになると消費電力増。", "difficulty": 2, "topic": "採光", "exam_freq": 3}
+{"type": "exam_point", "subject": "environment", "text": "COP=3のエアコンは1kWの電力で3kWの冷熱を得られる。COPが高いほど省エネ。", "difficulty": 3, "topic": "空調", "exam_freq": 4}
+{"type": "exam_point", "subject": "environment", "text": "水の蒸発潜熱は2,500kJ/kg。これは気化熱で、冷房の原理（エンタルピー差）の基礎。", "difficulty": 4, "topic": "熱力学", "exam_freq": 3}
+{"type": "exam_point", "subject": "environment", "text": "快適温度帯：冬季20〜22℃、夏季25〜28℃。PMV-0.5〜+0.5で90%以上の人が快適と感じる。", "difficulty": 3, "topic": "温熱環境", "exam_freq": 4}
+{"type": "exam_point", "subject": "environment", "text": "地下水の利用：夏季は冷房の冷熱源（18〜20℃）。冬季は暖房の熱源。地中熱交換。", "difficulty": 3, "topic": "再生可能エネルギー", "exam_freq": 2}
+{"type": "exam_point", "subject": "environment", "text": "屋上緑化は外気温を2〜3℃下げる。アルベド効果と蒸散熱で。", "difficulty": 2, "topic": "外気温緩和", "exam_freq": 2}

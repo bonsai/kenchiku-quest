@@ -1,0 +1,89 @@
+{"type": "material", "name": "スギ2級", "category": "木材", "E_MPa": 10000, "fb_MPa": 12.0, "ft_MPa": 7.5, "fs_MPa": 1.5, "rho_kg_m3": 400, "note": "代表的な国産材。含水率15%基準。", "exam_freq": 5}
+{"type": "material", "name": "スギ1級", "category": "木材", "E_MPa": 10000, "fb_MPa": 14.0, "ft_MPa": 9.0, "fs_MPa": 1.8, "rho_kg_m3": 400, "note": "スギ2級より強度大。節の少ないもの。", "exam_freq": 3}
+{"type": "material", "name": "マツ2級", "category": "木材", "E_MPa": 10000, "fb_MPa": 13.5, "ft_MPa": 8.5, "fs_MPa": 1.6, "rho_kg_m3": 450, "note": "マツ類。横架材に多く使われる。", "exam_freq": 3}
+{"type": "material", "name": "ラーチ", "category": "木材", "E_MPa": 11000, "fb_MPa": 15.0, "ft_MPa": 10.5, "fs_MPa": 2.0, "rho_kg_m3": 500, "note": "針葉樹のなかでは強い方。", "exam_freq": 2}
+{"type": "material", "name": "SM400", "category": "鋼材", "E_MPa": 205000, "fb_MPa": 210, "ft_MPa": 210, "fs_MPa": 125, "rho_kg_m3": 7850, "note": "普通の建築用鋼材。F=235N/mm²で降伏。", "exam_freq": 5}
+{"type": "material", "name": "SM490", "category": "鋼材", "E_MPa": 205000, "fb_MPa": 290, "ft_MPa": 290, "fs_MPa": 170, "rho_kg_m3": 7850, "note": "高力鋼。高層建築の柱梁に。", "exam_freq": 4}
+{"type": "material", "name": "SS400", "category": "鋼材", "E_MPa": 205000, "fb_MPa": 210, "ft_MPa": 210, "fs_MPa": 125, "rho_kg_m3": 7850, "note": "SSは一般構造用。SMとほぼ同じ値を使う。", "exam_freq": 3}
+{"type": "material", "name": "コンクリート18N", "category": "RC", "Fck_MPa": 18.0, "Ec_MPa": 23500, "sigma_ck_MPa": 6.0, "sigma_ca_MPa": 1.4, "rho_kg_m3": 2300, "note": "普通コンクリート。Fck=σck/3=18N/mm²", "exam_freq": 4}
+{"type": "material", "name": "コンクリート24N", "category": "RC", "Fck_MPa": 24.0, "Ec_MPa": 26500, "sigma_ck_MPa": 8.0, "sigma_ca_MPa": 1.8, "rho_kg_m3": 2300, "note": "高強度コンクリート。Fck=24N/mm²", "exam_freq": 3}
+{"type": "material", "name": "コンクリート30N", "category": "RC", "Fck_MPa": 30.0, "Ec_MPa": 29000, "sigma_ck_MPa": 10.0, "sigma_ca_MPa": 2.1, "rho_kg_m3": 2300, "note": "超高強度コンクリート。", "exam_freq": 2}
+{"type": "material", "name": "SD295A", "category": "鉄筋", "fsy_MPa": 295, "Es_MPa": 200000, "rho_kg_m3": 7850, "note": "普通鉄筋。フック付き。", "exam_freq": 4}
+{"type": "material", "name": "SD345", "category": "鉄筋", "fsy_MPa": 345, "Es_MPa": 200000, "rho_kg_m3": 7850, "note": "高強度鉄筋。", "exam_freq": 3}
+{"type": "material", "name": "SUS304", "category": "ステンレス", "E_MPa": 193000, "fb_MPa": 180, "ft_MPa": 180, "rho_kg_m3": 7930, "note": "耐食性が高い。手すりに使われる。", "exam_freq": 2}
+{"type": "material", "name": "アルミ6061", "category": "アルミ合金", "E_MPa": 69000, "fb_MPa": 95, "ft_MPa": 95, "fs_MPa": 55, "rho_kg_m3": 2700, "note": "軽くて錆びない。開口部枠など。", "exam_freq": 1}
+{"type": "unit_conversion", "name": "kN_to_kgf", "from": "kN", "to": "kgf", "factor": 101.97, "note": "1kN≈102kgf。1t=10kNと覚える。"}
+{"type": "unit_conversion", "name": "MPa_to_N_mm2", "from": "MPa", "to": "N/mm²", "factor": 1.0, "note": "1MPa=1N/mm²。同じ単位。"}
+{"type": "unit_conversion", "name": "N_to_kN", "from": "N", "to": "kN", "factor": 0.001, "note": "1kN=1000N。人1人≈800N。"}
+{"type": "formula", "name": "断面係数_矩形", "expr": "Z = b·h²/6", "variables": {"b": "幅(mm)", "h": "高さ(mm)"}, "units": "mm³", "note": "梁の曲げ強度を支配する。Zが大きいほど強い。", "exam_freq": 5}
+{"type": "formula", "name": "断面二次モーメント_矩形", "expr": "I = b·h³/12", "variables": {"b": "幅(mm)", "h": "高さ(mm)"}, "units": "mm⁴", "note": "たわみを支配する。Iが大きいほどたわみが小さい。", "exam_freq": 5}
+{"type": "formula", "name": "曲げ応力度_中央集中荷重", "expr": "σ = M/Z = P·L/(4·Z)", "variables": {"P": "集中荷重(N)", "L": "スパン(mm)", "Z": "断面係数(mm³)"}, "units": "N/mm²=MPa", "note": "単純梁中央に1個の重り。2級試験の標準形。", "exam_freq": 5}
+{"type": "formula", "name": "曲げ応力度_等分布荷重", "expr": "σ = M/Z = w·L²/(8·Z)", "variables": {"w": "等分布荷重(N/mm)", "L": "スパン(mm)", "Z": "断面係数(mm³)"}, "units": "N/mm²=MPa", "note": "雪荷重・人荷重などは等分布で近似。", "exam_freq": 5}
+{"type": "formula", "name": "曲げ応力度_片持ち梁先端集中荷重", "expr": "σ = M/Z = P·L/Z", "variables": {"P": "集中荷重(N)", "L": "長さ(mm)", "Z": "断面係数(mm³)"}, "units": "N/mm²=MPa", "note": "片持ち梁の根元モーメントは単純梁の4倍。", "exam_freq": 4}
+{"type": "formula", "name": "たわみ_単純梁中央集中荷重", "expr": "δ = P·L³/(48·E·I)", "variables": {"P": "集中荷重(N)", "L": "スパン(mm)", "E": "ヤング係数(MPa)", "I": "断面二次モーメント(mm⁴)"}, "units": "mm", "note": "許容たわみは通常L/250。", "exam_freq": 5}
+{"type": "formula", "name": "たわみ_片持ち梁先端集中荷重", "expr": "δ = P·L³/(3·E·I)", "variables": {"P": "集中荷重(N)", "L": "長さ(mm)", "E": "ヤング係数(MPa)", "I": "断面二次モーメント(mm⁴)"}, "units": "mm", "note": "片持ち梁は単純梁の16倍たわむ。", "exam_freq": 4}
+{"type": "formula", "name": "せん断応力度_矩形", "expr": "τ = 3·S/(2·b·h)", "variables": {"S": "せん断力(N)", "b": "幅(mm)", "h": "高さ(mm)"}, "units": "N/mm²=MPa", "note": "矩形断面の最大せん断応力は平均の1.5倍。", "exam_freq": 4}
+{"type": "formula", "name": "せん断応力度_円形", "expr": "τ = 4·S/(3·A)", "variables": {"S": "せん断力(N)", "A": "断面積(mm²)"}, "units": "N/mm²=MPa", "note": "円形断面の最大せん断応力は平均の4/3倍。", "exam_freq": 2}
+{"type": "formula", "name": "長細比", "expr": "λ = Lk/i", "variables": {"Lk": "座屈長さ(mm)", "i": "断面二次半径(mm)=√(I/A)"}, "units": "無次元", "note": "λが大きいほど座屈しやすい。木材120以下が目安。", "exam_freq": 4}
+{"type": "formula", "name": "座屈長さ_両端ピン", "expr": "Lk = L", "variables": {"L": "部材長さ(mm)"}, "units": "mm", "note": "両端ピン：1.0L。両端固定：0.5L。片持ち：2.0L。", "exam_freq": 5}
+{"type": "formula", "name": "オイラー座屈荷重", "expr": "Pcr = π²·E·I/Lk²", "variables": {"E": "ヤング係数(MPa)", "I": "断面二次モーメント(mm⁴)", "Lk": "座屈長さ(mm)"}, "units": "N", "note": "細長い柱の座屈限界。2級試験頻出。", "exam_freq": 3}
+{"type": "formula", "name": "断面二次半径", "expr": "i = √(I/A)", "variables": {"I": "断面二次モーメント(mm⁴)", "A": "断面積(mm²)"}, "units": "mm", "note": "iが大きいほど座屈に強い。", "exam_freq": 4}
+{"type": "formula", "name": "断面積_矩形", "expr": "A = b·h", "variables": {"b": "幅(mm)", "h": "高さ(mm)"}, "units": "mm²", "note": "基本的。", "exam_freq": 5}
+{"type": "formula", "name": "断面積_円形", "expr": "A = π·d²/4", "variables": {"d": "直径(mm)"}, "units": "mm²", "note": "丸柱・丸鋼の断面積。", "exam_freq": 3}
+{"type": "structure_type", "name": "単純梁", "characteristics": ["両端支持", "中央に曲げ最大"], "moment_factor": "PL/4", "deflection_factor": "PL³/(48EI)", "stress_type": "曲げ/せん断", "merit": "最も基本的。計算しやすい。", "demerit": "断面が大きくなる。スパンに制限。", "exam_freq": 5}
+{"type": "structure_type", "name": "片持ち梁", "characteristics": ["一端固定", "根元に最大応力"], "moment_factor": "PL", "deflection_factor": "PL³/(3EI)", "stress_type": "曲げ/せん断", "merit": "出幅が取れる。バルコニーなど。", "demerit": "単純梁の4倍の応力。たわみも16倍。", "exam_freq": 5}
+{"type": "structure_type", "name": "両端固定梁", "characteristics": ["両端モーメント固定", "支点と中央に曲げ大"], "moment_factor": "PL/8", "deflection_factor": "PL³/(192EI)", "stress_type": "曲げ/せん断", "merit": "たわみが単純梁の1/4。", "demerit": "支点に大きな負モーメント。温度応力。", "exam_freq": 3}
+{"type": "structure_type", "name": "連続梁", "characteristics": ["3以上の支点", "中間支点に負モーメント"], "moment_factor": "連立方程式", "deflection_factor": "連続", "stress_type": "曲げ/せん断", "merit": "長いスパンを実現。", "demerit": "計算が複雑。", "exam_freq": 2}
+{"type": "structure_type", "name": "トラス橋", "characteristics": ["三角形の組み合わせ", "軸力のみ"], "moment_factor": "節点法", "deflection_factor": "仮想仕事法", "stress_type": "引張/圧縮", "merit": "軽量で大スパン。", "demerit": "高さが必要。製作が面倒。", "exam_freq": 4}
+{"type": "structure_type", "name": "アーチ橋", "characteristics": ["圧縮力のみ伝達", "脚部に水平反力（推力）"], "moment_factor": "圧縮軸力", "deflection_factor": "圧縮", "stress_type": "圧縮のみ", "merit": "美しい。石材・コンクリート向き。", "demerit": "推力で地盤が必要。水平変位に弱い。", "exam_freq": 4}
+{"type": "structure_type", "name": "吊り橋", "characteristics": ["ケーブルの引張力で支える", "パラボラ近似"], "moment_factor": "ケーブル張力", "deflection_factor": "大変形", "stress_type": "引張/圧縮", "merit": "最大スパン。優美。", "demerit": "風に弱い。振動制御が必要。", "exam_freq": 3}
+{"type": "structure_type", "name": "ラーメン構造", "characteristics": ["柱と梁が剛接合", "モーメント伝達"], "moment_factor": "剛接合", "deflection_factor": "剛性フレーム", "stress_type": "曲げ/軸力/せん断", "merit": "変形が小さい。耐震性高い。", "demerit": "接合部が複雑。温度応力。", "exam_freq": 3}
+{"type": "structure_type", "name": "壁式構造", "characteristics": ["壁で水平力抵抗", "剛性が高い"], "moment_factor": "壁のせん断", "deflection_factor": "壁変形", "stress_type": "せん断/曲げ", "merit": "変形が極めて小さい。", "demerit": "開口部に制限。", "exam_freq": 2}
+{"type": "truss_rule", "name": "ゼロ力材_3本で2本一直線", "rule": "節点で3本の材が交わり、そのうち2本が一直線上なら、3本目はゼロ力材", "example": "K型トラスの中央材", "exam_freq": 5}
+{"type": "truss_rule", "name": "ゼロ力材_2本で対称荷重", "rule": "節点で2本の材が交わり、荷重が作用しないなら両方ゼロ力材（ただし一直線上でない）", "example": "ウォーレントラスの端部", "exam_freq": 4}
+{"type": "truss_rule", "name": "ゼロ力材_対称構造反対称荷重", "rule": "対称な構造に反対称な荷重がかかるとき、対称軸上の材はゼロ力材", "example": "中央の鉛直材", "exam_freq": 3}
+{"type": "truss_rule", "name": "ゼロ力材_端部1本", "rule": "端部の節点で、1本の材しかない＋荷重なし → その材はゼロ力材", "example": "トラス端部の斜材", "exam_freq": 4}
+{"type": "truss_rule", "name": "節点法", "rule": "ΣFx=0, ΣFy=0 で各節点の力の釣り合いを解く", "note": "未知力が2個以下の節点から順番に解く。", "exam_freq": 5}
+{"type": "truss_rule", "name": "切断法", "rule": "構造を仮想的に切断し、ΣM=0, ΣFx=0, ΣFy=0 で未知数を求める", "note": "未知力が3個以下になるように切る。", "exam_freq": 4}
+{"type": "exam_point", "subject": "structure", "text": "単純梁中央集中荷重の最大曲げモーメントは M=PL/4。片持ち梁先端集中荷重はM=PL（4倍）。", "difficulty": 3, "topic": "曲げモーメント", "exam_freq": 5}
+{"type": "exam_point", "subject": "structure", "text": "せん断力図(S図)の傾きは等分布荷重wと等しい。曲げモーメント図(M図)の傾きはせん断力Sと等しい。", "difficulty": 4, "topic": "S図M図", "exam_freq": 5}
+{"type": "exam_point", "subject": "structure", "text": "M図の2階微分は等分布荷重wに等しい。d²M/dx² = -w", "difficulty": 3, "topic": "微分関係", "exam_freq": 3}
+{"type": "exam_point", "subject": "structure", "text": "断面係数Zは形状によって増えない。幅bを2倍→Zが2倍。高さhを2倍→Zが4倍。", "difficulty": 2, "topic": "断面係数", "exam_freq": 4}
+{"type": "exam_point", "subject": "structure", "text": "木材の長細比λ=Lk/iの上限は120が基本（軸方向圧縮）。120を超えると座屈計算が要る。", "difficulty": 3, "topic": "長細比", "exam_freq": 4}
+{"type": "exam_point", "subject": "structure", "text": "建築基準法で1人の荷重(床面積あたり)は1,800N/m²とする。劇場は2,900N/m²。", "difficulty": 2, "topic": "人荷重", "exam_freq": 5}
+{"type": "exam_point", "subject": "structure", "text": "許容せん断力の計算に用いる断面積は、柱の場合は全断面積。梁の場合は有効断面積。", "difficulty": 4, "topic": "せん断", "exam_freq": 3}
+{"type": "exam_point", "subject": "structure", "text": "耐力壁とは地震力・風圧力に抵抗する壁。一般に壁量は1階あたり30cm/m以上必要。", "difficulty": 3, "topic": "耐力壁", "exam_freq": 4}
+{"type": "exam_point", "subject": "structure", "text": "高力ボルト摩擦接合は、接合面の摩擦力で力を伝える。高力ボルトの締め付け軸力が重要。", "difficulty": 3, "topic": "鉄骨接合", "exam_freq": 4}
+{"type": "exam_point", "subject": "structure", "text": "溶接が可能な板厚の下限：鋼材t≥4mmが原則。t=4mm未満は補強が必要。", "difficulty": 3, "topic": "溶接", "exam_freq": 3}
+{"type": "exam_point", "subject": "structure", "text": "コンクリートの中性化が鉄筋に達すると錆が発生。被り厚は外部35mm以上、内部20mm以上。", "difficulty": 3, "topic": "RC耐久性", "exam_freq": 4}
+{"type": "exam_point", "subject": "structure", "text": "かぶと掛け（片持ち梁）の先端たわみは、同条件単純梁の16倍。根元应力は4倍。", "difficulty": 3, "topic": "片持ち梁", "exam_freq": 5}
+{"type": "exam_point", "subject": "structure", "text": "引張部材と圧縮部材を組み合わせた場合、圧縮部材が座屈する。全体の耐力は座屈耐力で支配される。", "difficulty": 4, "topic": "座屈", "exam_freq": 3}
+{"type": "exam_point", "subject": "structure", "text": "構造計算で安全確保の流れ：「設計荷重」×「応力分担係数」≤「基準強度」÷「材料係数」÷「構造係数」。", "difficulty": 5, "topic": "許容応力度計算", "exam_freq": 4}
+{"type": "exam_point", "subject": "structure", "text": "スパン比(建築)＝柱高さ/柱幅。b/hが大きい（細長い）柱は座屈に注意。", "difficulty": 3, "topic": "柱", "exam_freq": 2}
+{"type": "exam_point", "subject": "structure", "text": "原木の年輪に沿う方向が強い（圧縮・曲げ）。年輪に直角は弱い。", "difficulty": 2, "topic": "木材異方性", "exam_freq": 2}
+{"type": "exam_point", "subject": "structure", "text": "スリムデンダー比 λb = 圧縮の長細比 / 座屈限界長細比。λb > 1 で座屈。", "difficulty": 4, "topic": "鋼材座屈", "exam_freq": 3}
+{"type": "stress_type", "name": "引張応力", "symbol": "σt", "cause": "引張外力", "mode": "材料が引き裂かれる", "example": "吊り橋のケーブル", "formula_ref": "σ = N/A", "exam_freq": 5}
+{"type": "stress_type", "name": "圧縮応力", "symbol": "σc", "cause": "圧縮外力", "mode": "材料が押し潰される/座屈", "example": "柱・アーチ橋", "formula_ref": "σ = N/A, λ=Lk/i", "exam_freq": 5}
+{"type": "stress_type", "name": "曲げ応力", "symbol": "σb", "cause": "曲げモーメント", "mode": "一端引張・一端圧縮", "example": "梁の中央下側", "formula_ref": "σ = M/Z", "exam_freq": 5}
+{"type": "stress_type", "name": "せん断応力", "symbol": "τ", "cause": "せん断力", "mode": "層間スリップ", "example": "梁の支点近傍", "formula_ref": "τ = S·Q/(I·b)", "exam_freq": 4}
+{"type": "stress_type", "name": "座屈", "symbol": "Pcr", "cause": "細長い圧縮部材", "mode": "側方への大変形", "example": "細長い柱", "formula_ref": "Pcr = π²EI/Lk²", "exam_freq": 4}
+{"type": "stress_type", "name": "ねじり応力", "symbol": "τt", "cause": "ねじりモーメント", "mode": "せん断応力分布", "example": "円軸", "formula_ref": "τ = T·r/Ip", "exam_freq": 2}
+{"type": "stress_type", "name": "挫屈", "symbol": "σL", "cause": "薄い板の圧縮", "mode": "板の波打ち", "example": "薄鋼板・薄肉円管", "formula_ref": "―", "exam_freq": 2}
+{"type": "load_type", "name": "死荷重", "symbol": "G", "description": "構造物自体の重さ。不変。", "example": "梁自重・床自重・壁自重", "exam_freq": 5}
+{"type": "load_type", "name": "活荷重", "symbol": "Q", "description": "人・物の可変荷重。", "example": "人荷重1,800N/m², 雪荷重", "exam_freq": 5}
+{"type": "load_type", "name": "風荷重", "symbol": "W", "description": "風圧による水平荷重。", "example": "基本風速Vo=38m/s (東京)", "exam_freq": 4}
+{"type": "load_type", "name": "地震荷重", "symbol": "K", "description": "地震時の慣性力。", "example": "震度係数Z=1.0, 使用層剪断係数Cx", "exam_freq": 4}
+{"type": "load_type", "name": "積雪荷重", "symbol": "S", "description": "屋根に積もる雪の重さ。", "example": "垂直積雪量80cm(札幌)→換算", "exam_freq": 3}
+{"type": "load_type", "name": "土圧", "symbol": "E", "description": "土の水平圧力。", "example": "地中梁・擁壁", "exam_freq": 2}
+{"type": "wood_joint", "name": "ほぞ接ぎ", "type": "剛接合", "merit": "モーメント伝達可能。変形が小さい。", "demerit": "加工が複雑。精度が必要。", "exam_freq": 3}
+{"type": "wood_joint", "name": "じゃくすね", "type": "柱梁接合", "merit": "引抜きに強い。", "demerit": "モーメント伝達は有限。", "exam_freq": 3}
+{"type": "wood_joint", "name": "金物接合", "type": "接合", "merit": "加工簡単。現場作業が速い。", "demerit": "剛性が低い。金物コスト。", "exam_freq": 4}
+{"type": "steel_connection", "name": "高力ボルト摩擦接合", "type": "ボルト", "merit": "施工管理がしやすい。", "demerit": "接合面の摩擦係数が重要。", "exam_freq": 4}
+{"type": "steel_connection", "name": "溶接接合", "type": "溶接", "merit": "剛性が高い。外観すっきり。", "demerit": "溶接変形。検査が必要。", "exam_freq": 4}
+{"type": "steel_connection", "name": "ボルト併用接合", "type": "複合", "merit": "多様な設計が可能。", "demerit": "計算が複雑。", "exam_freq": 2}
+{"type": "rc_concept", "name": "かぶり厚", "value_external": "35mm", "value_internal": "20mm", "note": "外気側35mm以上、屋内側20mm以上。中性能と耐久性を両立。", "exam_freq": 4}
+{"type": "rc_concept", "name": "主筋かぶり", "value": "d=75mm以上（柱）", "note": "主筋からコンクリート表面までの距離。打設性考慮。", "exam_freq": 3}
+{"type": "rc_concept", "name": "鉄筋ピッチ", "value": "100mm以上", "note": "鉄筋間隔。打設時の粗骨材通過を確保。", "exam_freq": 3}
+{"type": "rebar_arrangement", "name": "柱_4本配筋", "n_bars": 4, "typical_diameter": "D13-D16", "note": "普通の柱。軸力小ならこれで十分。", "exam_freq": 3}
+{"type": "rebar_arrangement", "name": "柱_8本配筋", "n_bars": 8, "typical_diameter": "D16-D19", "note": "高力柱。地震時のやられ抵抗力を確保。", "exam_freq": 2}
+{"type": "rebar_arrangement", "name": "梁_上下2段配筋", "n_top": 2, "n_bottom": 2, "typical_diameter": "D13-D16", "note": "梁は下側から曲げ。上側は負モーメント対策。", "exam_freq": 4}
