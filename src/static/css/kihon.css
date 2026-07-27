@@ -1,0 +1,26 @@
+:root {
+  --dark: #0a0a1a;
+  --panel: #16162a;
+  --accent: #e94560;
+  --accent2: #0f3460;
+  --text: #eaeaea;
+  --text2: #a0a0c0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans JP', -apple-system,BlinkMacSystemFont,sans-serif;
+  background: var(--dark); color: var(--text);
+  line-height: 1.6; min-height: 100vh;
+}
+header {
+  text-align: center; padding: 3rem 1rem 2rem;
+  background: linear-gradient(180deg, var(--panel) 0%, var(--dark) 100%);
+}
+header h1 {
+  font-size: 2.5rem; font-weight: 900;
+  background: linear-gradient(90deg, var(--accent), #ff8e8e);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+pre { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #4ecdc4; }
