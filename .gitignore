@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.env
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+.gradle/
+build/
+
+# TypeScript / Node
+node_modules/
+dist/
+*.log
+
+# Minecraft
+*.mca
+*.dat
+*.lock
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output
+*.png
+*.dxf
+*.blend
+*.glb
+out/
