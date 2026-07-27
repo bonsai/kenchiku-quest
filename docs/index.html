@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kenchiku-quest — PyScript版</title>
+<link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
+<script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+<style>
+:root { --dark: #0a0a1a; --panel: #16162a; --accent: #e94560; --text: #eaeaea; --text2: #a0a0c0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans JP', -apple-system, sans-serif;
+  background: var(--dark); color: var(--text);
+  line-height: 1.6; min-height: 100vh;
+}
+header { text-align: center; padding: 3rem 1rem 2rem;
+  background: linear-gradient(180deg, var(--panel) 0%, var(--dark) 100%);
+}
+h1 { font-size: 2.5rem; font-weight: 900;
+  background: linear-gradient(90deg, var(--accent), #ff8e8e);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.subtitle { color: var(--text2); font-size: 1.05rem; margin-top: 0.5rem; }
+#py-terminal { max-width: 800px; margin: 2rem auto; padding: 0 1.5rem; }
+.py-terminal { background: var(--panel); border-radius: 12px; padding: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+<h1>kenchiku-quest</h1>
+<p class="subtitle">PyScriptで動く 2級建築士試験ゲーム化プロジェクト</p>
+</header>
+
+<div id="py-terminal"></div>
+
+<script type="py">
+import js
+from pyscript import window, document
+
+# ===== kenchiku-quest 共通エンジン（Python版）=====
+
+class Player:
+    def __init__(self, name="鋼太郎"):
+        self.name = name
+        self.hp = 100
+        self.mp = 50
+        self.exp = 0
+        self.rank = "見習い"
+        self.cleared = {"structure": [], "environment": [], "construction": [], "regulation": []}
+    
+    def save(self):
+        data = f"{self.name}|{self.hp}|{self.mp}|{self.exp}|{self.rank}"
+        window.localStorage.setItem("kq_save", data)
+    
+    def load(self):
+        data = window.localStorage.getItem("kq_save")
+        if data:
+            parts = data.split("|")
+            self.name, self.hp, self.mp, self.exp, self.rank = parts[0], int(parts[1]), int(parts[2]), int(parts[3]), parts[4]
+
+# ===== 構造計算モジュール =====
+
+def section_modulus(b_mm: float, h_mm: float) -> float:
+    """断面係数 Z = b*h²/6 [mm³]"""
+    return b_mm * h_mm ** 2 / 6
+
+def moment_of_inertia(b_mm: float, h_mm: float) -> float:
+    """断面二次モーメント I = b*h³/12 [mm⁴]"""
+    return b_mm * h_mm ** 3 / 12
+
+def bending_stress(P_N: float, L_mm: float, Z_mm3: float) -> float:
+    """曲げ応力度 σ = M/Z = P*L/(4*Z) [MPa] （単純梁中央集中荷重）"""
+    M = P_N * L_mm / 4
+    return M / Z_mm3
+
+def deflection_cantilever(P_N: float, L_mm: float, E_MPa: float, I_mm4: float) -> float:
+    """片持ち梁先端たわみ δ = P*L³/(3*E*I) [mm]"""
+    return P_N * L_mm ** 3 / (3 * E_MPa * I_mm4)
+
+# ===== 表示 =====
+
+player = Player()
+player.load()
+
+output = []
+output.append(f"プレイヤー: {player.name}")
+output.append(f"HP: {player.hp} | MP: {player.mp} | EXP: {player.exp} | ランク: {player.rank}")
+output.append("")
+output.append("=== 構造計算テスト ===")
+
+Z = section_modulus(180, 200)
+I = moment_of_inertia(180, 200)
+sigma = bending_stress(20000, 4000, Z)
+delta = deflection_cantilever(20000, 4000, 10000, I)
+
+output.append(f"断面係数 Z = {Z:,.0f} mm³")
+output.append(f"断面二次モーメント I = {I:,.0f} mm⁴")
+output.append(f"曲げ応力度 σ = {sigma:.2f} MPa")
+output.append(f"たわみ δ = {delta:.2f} mm")
+
+result = "\n".join(output)
+print(result)
+
+# DOMに出力
+div = document.getElementById("py-terminal")
+div.innerHTML = f'<div class="py-terminal"><pre style="color:#eaeaea;font-size:0.9rem;white-space:pre-wrap;">{result}</pre></div>'
+
+</script>
+
+</body>
+</html>
