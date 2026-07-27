@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S図・M図アニメーション — 2級建築士構造「建築試験基礎」</title>
+<style>
+:root {
+  --bg: #0a0a1a;
+  --panel: #16162a;
+  --accent: #e94560;
+  --text: #eaeaea;
+  --dim: #a0a0c0;
+  --chart1: #4ecdc4;
+  --chart2: #ffe66d;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+header {
+  text-align: center;
+  padding: 2.5rem 1rem 1.5rem;
+}
+h1 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, var(--accent), #ff8e8e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.subtitle { color: var(--dim); font-size: 0.95rem; margin-top: 0.3rem; }
+section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--chart1);
+}
+h2 span { color: var(--dim); font-weight: 400; font-size: 0.85em; margin-left: 0.5rem; }
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+button {
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text);
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+button:hover, button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+canvas { display: block; margin: 0 auto; border-radius: 8px; background: var(--panel); }
+.explanation {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(78,205,196,0.08);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--text);
+  border-left: 3px solid var(--chart1);
+}
+.code-box {
+  font-family: monospace;
+  background: #0f0f20;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--chart2);
+  margin-top: 0.5rem;
+  overflow-x: auto;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>S図・M図アニメーション</h1>
+<p class="subtitle">2級建築士試験「構造」の核心 — 力学を動きで理解する</p>
+</header>
+
+<!-- ============ 1. 等分布荷重 ============ -->
+<section>
+<h2>① 等分布荷重の単純梁 <span>w = 10 kN/m、L = 6m</span></h2>
+<div class="controls">
+  <button onclick="playAnim('uniform')" id="btn-uniform">▶ 再生</button>
+  <button onclick="resetAnim('uniform')">停止</button>
+</div>
+<canvas id="c-uniform" width="820" height="340"></canvas>
+<div class="explanation" id="exp-uniform">
+雪や人荷重は「梁全体に均等にかかる力」としてモデル化できる。<br>
+<b>S図（せん断力図）</b>：左右対称の三角形。右肩上がり→右肩下がり。支点で最大。<br>
+<b>M図（曲げモーメント図）</b>：放物線。中央で最大値 M=wL²/8 = 45 kN·m。
+</div>
+<div class="code-box" id="form-uniform">M = w·L² / 8 = 10 × 6² / 8 = 45 kN·m</div>
+</section>
+
+<!-- ============ 2. 中央集中荷重 ============ -->
+<section>
+<h2>② 中央集中荷重 <span>P = 20kN、L = 4m</span></h2>
+<div class="controls">
+  <button onclick="playAnim('center')" id="btn-center">▶ 再生</button>
+  <button onclick="resetAnim('center')">停止</button>
+</div>
+<canvas id="c-center" width="820" height="340"></canvas>
+<div class="explanation" id="exp-center">
+中央に重りを1個置いた状態。図が最もシンプルで2級試験に最も頻出する。<br>
+<b>S図</b>：左右が水平線（P/2）で、中央で符号反転のステップ変化。<br>
+<b>M図</b>：左右対称の三角形。中央で最大値 M=PL/4 = 20 kN·m。
+</div>
+<div class="code-box" id="form-center">M = P·L / 4 = 20 × 4 / 4 = 20 kN·m</div>
+</section>
+
+<!-- ============ 3. 片持ち梁 ============ -->
+<section>
+<h2>③ 片持ち梁（先端集中荷重） <span>P = 10kN、L = 2m</span></h2>
+<div class="controls">
+  <button onclick="playAnim('cantilever')" id="btn-cantilever">▶ 再生</button>
+  <button onclick="resetAnim('cantilever')">停止</button>
+</div>
+<canvas id="c-cantilever" width="820" height="340"></canvas>
+<div class="explanation" id="exp-cantilever">
+片持ち梁は「壁から出たバルコニー」などに相当。単純梁と比べて応力が集中する。<br>
+<b>S図</b>：全長で一定値 -P（負のせん断）。<br>
+<b>M図</b>：根元から先端へ直線的に減少。根元で最大値 M=PL = 20 kN·m。<br>
+⚠️ 同じPなら、片持ち梁は単純梁の <b>4倍</b> のモーメントが発生する。
+</div>
+<div class="code-box" id="form-cantilever">M = P·L = 10 × 2 = 20 kN·m（同じ20kN·mでも、Pが半分で済む単純梁に対しP反応）</div>
+</section>
+
+<script>
+const CTX = {};
+const STATE = {};
+const ANI = {};
+
+function initCanvas(id) {
+  const c = document.getElementById(id);
+  CTX[id] = c.getContext('2d');
+  STATE[id] = { t: 0, playing: false, maxT: 1 };
+  return c;
+}
+
+initCanvas('c-uniform');
+initCanvas('c-center');
+initCanvas('c-cantilever');
+
+// ============ 描画ユーティリティ ============
+function clear(ctx) {
+  ctx.fillStyle = '#16162a';
+  ctx.fillRect(0,0,820,340);
+}
+function grid(ctx) {
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.lineWidth = 1;
+  for(let x=60;x<780;x+=20){ ctx.beginPath();ctx.moveTo(x,20);ctx.lineTo(x,320);ctx.stroke(); }
+  for(let y=20;y<320;y+=20){ ctx.beginPath();ctx.moveTo(60,y);ctx.lineTo(780,y);ctx.stroke(); }
+}
+function axis(ctx) {
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(60,160); ctx.lineTo(780,160); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(60,20); ctx.lineTo(60,320); ctx.stroke();
+}
+function label(ctx, text, x, y, color='#a0a0c0') {
+  ctx.fillStyle = color; ctx.font = '12px sans-serif'; ctx.fillText(text, x, y);
+}
+
+// ============ S/M図描画ヘルパー ============
+function drawBeam(ctx, yBeam, Lpx, color) {
+  ctx.strokeStyle = color; ctx.lineWidth = 6; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(60, yBeam); ctx.lineTo(60+Lpx, yBeam); ctx.stroke();
+  // 支点三角形
+  ctx.fillStyle = color;
+  ctx.beginPath(); ctx.moveTo(50, yBeam+15); ctx.lineTo(60, yBeam); ctx.lineTo(70, yBeam+15); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(50+Lpx, yBeam+15); ctx.lineTo(60+Lpx, yBeam); ctx.lineTo(70+Lpx, yBeam+15); ctx.fill();
+}
+function drawDeflection(ctx, yBeam, Lpx, deflectFn, t) {
+  ctx.strokeStyle = '#4ecdc4'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(60, yBeam);
+  for(let x=0;x<=Lpx;x+=2){
+    const ratio = x/Lpx;
+    ctx.lineTo(60+x, yBeam + deflectFn(ratio)*t*40);
+  }
+  ctx.stroke();
+}
+function drawS(ctx, yS, Lpx, sFn, t, maxS) {
+  ctx.strokeStyle = '#ffe66d'; ctx.lineWidth = 2.5;
+  const scale = 60 / maxS;
+  ctx.beginPath(); ctx.moveTo(60, yS);
+  for(let x=0;x<=Lpx;x+=2){
+    const ratio = x/Lpx;
+    ctx.lineTo(60+x, yS - sFn(ratio)*t*scale);
+  }
+  ctx.stroke();
+  label(ctx, 'S', 35, yS+4, '#ffe66d');
+}
+function drawM(ctx, yM, Lpx, mFn, t, maxM) {
+  ctx.strokeStyle = '#e94560'; ctx.lineWidth = 2.5;
+  const scale = 60 / maxM;
+  ctx.beginPath(); ctx.moveTo(60, yM);
+  for(let x=0;x<=Lpx;x+=2){
+    const ratio = x/Lpx;
+    ctx.lineTo(60+x, yM - mFn(ratio)*t*scale);
+  }
+  ctx.stroke();
+  label(ctx, 'M', 35, yM+4, '#e94560');
+}
+function drawLoadArrow(ctx, x, yDir, t, w) {
+  ctx.strokeStyle = '#ff8e8e'; ctx.fillStyle = '#ff8e8e';
+  ctx.lineWidth = 2;
+  const len = 25*t;
+  ctx.beginPath(); ctx.moveTo(x, yDir); ctx.lineTo(x, yDir+len); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x-4, yDir+len-6); ctx.lineTo(x, yDir+len); ctx.lineTo(x+4, yDir+len-6); ctx.fill();
+}
+
+// ============ 個別アニメーション ============
+
+function drawUniform() {
+  const id='c-uniform', ctx=CTX[id], s=STATE[id];
+  clear(ctx); grid(ctx); axis(ctx);
+  const Lpx = 660, yBeam = 80, yS = 170, yM = 260;
+  const t = s.t;
+  // 梁
+  drawBeam(ctx, yBeam, Lpx, '#eaeaea');
+  // たわみ
+  drawDeflection(ctx, yBeam, Lpx, r => -Math.sin(Math.PI*r), t);
+  // 等分布荷重矢印
+  for(let i=0;i<=20;i++) drawLoadArrow(ctx, 60+i*(Lpx/20), yBeam-30, t, 1);
+  label(ctx, '等分布荷重 w', 350, yBeam-38, '#ff8e8e');
+  // S図 (三角形: S=wL/2-wx → 0.5→-0.5)
+  drawS(ctx, yS, Lpx, r => (1-2*r), t, 1);
+  // M図 (放物線: M∝ x(L-x)/L² → 中央で1)
+  drawM(ctx, yM, Lpx, r => 4*r*(1-r), t, 1);
+  // 数値表示
+  if(t>0.9) {
+    ctx.fillStyle = '#ff8e8e'; ctx.font = 'bold 14px sans-serif';
+    ctx.fillText('Mmax = wL²/8 = 45 kN·m', 400, yM-50);
+  }
+  label(ctx, '単純梁', 80, 30, '#4ecdc4');
+}
+
+function drawCenter() {
+  const id='c-center', ctx=CTX[id], s=STATE[id];
+  clear(ctx); grid(ctx); axis(ctx);
+  const Lpx = 660, yBeam = 80, yS = 170, yM = 260;
+  const t = s.t;
+  drawBeam(ctx, yBeam, Lpx, '#eaeaea');
+  drawDeflection(ctx, yBeam, Lpx, r => -(3*r-4*r*r*r)*(r<=0.5?1:-1)*0.3, t);
+  drawLoadArrow(ctx, 60+Lpx/2, yBeam-30, t, 1);
+  label(ctx, '集中荷重 P', 60+Lpx/2-20, yBeam-38, '#ff8e8e');
+  // S図 (ステップ: 左側0.5、右側-0.5)
+  ctx.strokeStyle = '#ffe66d'; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(60,170-30*t); ctx.lineTo(60+Lpx/2,170-30*t); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(60+Lpx/2,170+30*t); ctx.lineTo(60+Lpx,170+30*t); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(60+Lpx/2,170-30*t); ctx.lineTo(60+Lpx/2,170+30*t); ctx.stroke();
+  label(ctx, 'S', 35, 174, '#ffe66d');
+  // M図 (三角形: 0→1→0)
+  drawM(ctx, yM, Lpx, r => (r<=0.5)?2*r:2*(1-r), t, 1);
+  if(t>0.9) {
+    ctx.fillStyle = '#ff8e8e'; ctx.font = 'bold 14px sans-serif';
+    ctx.fillText('Mmax = PL/4 = 20 kN·m', 400, yM-50);
+  }
+  label(ctx, '単純梁（中央集中荷重）', 80, 30, '#4ecdc4');
+}
+
+function drawCantilever() {
+  const id='c-cantilever', ctx=CTX[id], s=STATE[id];
+  clear(ctx); grid(ctx); axis(ctx);
+  const Lpx = 660, yBeam = 80, yS = 170, yM = 260;
+  const t = s.t;
+  // 片持ち梁：根元固定、先端自由
+  ctx.strokeStyle = '#eaeaea'; ctx.lineWidth = 6;
+  ctx.beginPath(); ctx.moveTo(60, yBeam); ctx.lineTo(60+Lpx, yBeam); ctx.stroke();
+  // 固定端
+  ctx.fillStyle = '#a0a0c0';
+  ctx.fillRect(45, yBeam-10, 15, 20);
+  ctx.fillRect(45, yBeam+10, 50, 3);
+  ctx.fillRect(45, yBeam+16, 50, 3);
+  drawDeflection(ctx, yBeam, Lpx, r => -(r*r*(3-r))/2, t);
+  drawLoadArrow(ctx, 60+Lpx, yBeam-30, t, 1);
+  label(ctx, 'P', 60+Lpx-5, yBeam-38, '#ff8e8e');
+  // S図 (一定 -1)
+  ctx.strokeStyle = '#ffe66d'; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(60,170+30*t); ctx.lineTo(60+Lpx,170+30*t); ctx.stroke();
+  label(ctx, 'S = -P（一定）', 80, 195, '#ffe66d');
+  label(ctx, 'S', 35, 174, '#ffe66d');
+  // M図 (線形: 1→0、根元で最大)
+  drawM(ctx, yM, Lpx, r => 1-r, t, 1);
+  if(t>0.9) {
+    ctx.fillStyle = '#ff8e8e'; ctx.font = 'bold 14px sans-serif';
+    ctx.fillText('Mmax = PL = 20 kN·m（単純梁の4倍！）', 400, yM-50);
+  }
+  label(ctx, '片持ち梁', 80, 30, '#e94560');
+}
+
+// ============ アニメーション制御 ============
+function loop() {
+  for(const key in STATE) {
+    if(STATE[key].playing && STATE[key].t < STATE[key].maxT) {
+      STATE[key].t += 0.012;
+      if(STATE[key].t > STATE[key].maxT) STATE[key].t = STATE[key].maxT;
+    }
+  }
+  drawUniform(); drawCenter(); drawCantilever();
+  requestAnimationFrame(loop);
+}
+
+function playAnim(name) {
+  STATE['c-'+name].playing = true;
+  if(STATE['c-'+name].t >= 1) STATE['c-'+name].t = 0;
+  document.getElementById('btn-'+name).classList.add('active');
+}
+function resetAnim(name) {
+  STATE['c-'+name].playing = false; STATE['c-'+name].t = 0;
+  document.getElementById('btn-'+name).classList.remove('active');
+}
+
+loop();
+</script>
+</body>
+</html>
